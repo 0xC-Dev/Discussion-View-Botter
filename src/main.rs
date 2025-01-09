@@ -1,5 +1,5 @@
 use reqwest::header::{HeaderMap, HeaderValue};
-use reqwest::Client;
+use reqwest::{Client, Url};
 use std::io::{self};
 use std::time::Duration;
 use tokio::time::sleep;
@@ -12,6 +12,11 @@ async fn main() {
     let mut url = String::new();
     io::stdin().read_line(&mut url).expect("Failed to read input");
     let url = url.trim();
+
+    // For host header
+    // let parsed_url = Url::parse(url).expect("Invalid URL");
+    // let host = parsed_url.host_str().expect("Failed to extract host from URL");
+
 
     // Ask for cookie values from the user
     println!("Enter the value for d2lSessionVal:");
@@ -50,7 +55,9 @@ async fn main() {
 
     // Create custom headers
     let mut headers = HeaderMap::new();
-    headers.insert("Host", HeaderValue::from_static("www.fanshaweonline.ca"));
+
+    // You can dynamically add host since if you remove in burp it will show 400 but i think this rust req lib adds one automatically
+    //headers.insert("Host", HeaderValue::from_str(host).expect("Invalid host"));
     headers.insert(
         "User-Agent",
         HeaderValue::from_static("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.140 Safari/537.36"),
