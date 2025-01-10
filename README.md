@@ -14,6 +14,9 @@ Made a rust program to spam views on a specific d2l discussion post :)
 3. Run the application:
    ```cargo run```
 
+#### OR
+   Download exe and run
+
 #### Usage
 1. Enter the URL for the requests.
 2. Provide session cookie values (d2lSessionVal and d2lSecureSessionVal).
